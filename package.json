@@ -1,0 +1,22 @@
+{
+  "name": "req2query",
+  "version": "1.0.0",
+  "description": "* * *",
+  "main": "req2query.js",
+  "scripts": {
+    "test": "node ./test_req2query"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cognitev/req2query.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cognitev/req2query/issues"
+  },
+  "homepage": "https://github.com/cognitev/req2query#readme",
+  "dependencies": {
+    "sequelize": "^5.21.11"
+  }
+}
