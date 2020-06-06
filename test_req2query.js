@@ -1,5 +1,9 @@
 const assert = require("assert");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 const extractAttr = require("./req2query").extractAttr;
+const matchedObject = require("./req2query").matchAttr;
+
 const modelAttr = {
   started_at: {
     type: "Date",
@@ -100,7 +104,7 @@ try {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
         amount: "10",
         started_at: "2020-01-01",
-        is_deleted: true,
+        is_deleted: false,
       },
     },
     modelAttr
@@ -112,10 +116,10 @@ try {
     },
     campaign: {
       started_at: ["2020-01-01"],
-      is_deleted: [true],
+      is_deleted: {[Op.not]: true},
     },
   });
-  
+
   /* TESTCASE */
   currentTest = "6. add amount gte operator";
   console.log(currentTest);
@@ -199,9 +203,6 @@ try {
     },
   });
 
-  const matchedObject = require("./req2query").matchAttr;
-  const sequelize = require("sequelize");
-  const Op = sequelize.Op;
   
   /* TESTCASE */
   currentTest = "MATCHEDOBJECT: base case empty query";
@@ -290,7 +291,37 @@ try {
       },
     },
   });
-  
+
+  // /* TESTCASE */
+  currentTest = "4.1: add boolean varaible with false value";
+  console.log(currentTest);
+
+  extractedAttr = {
+    package: {
+      state: ["RUNNING", "PENDING", "PENDING_PAID"],
+      amount: ["10"],
+    },
+    campaign: {
+      started_at: ["2020-01-01"],
+      is_deleted: {[Op.not]: true},
+    },
+  };
+  matchedObj = matchedObject(extractedAttr);
+  assert.deepEqual(matchedObj, {
+    package: {
+      where: {
+        state: ["RUNNING", "PENDING", "PENDING_PAID"],
+        amount: ["10"],
+      },
+    },
+    campaign: {
+      where: {
+        started_at: ["2020-01-01"],
+        is_deleted: { [Op.not]: true },
+      },
+    },
+  });
+
   /* TESTCASE */
   currentTest = "5. add amount gte operator";
   console.log(currentTest);
