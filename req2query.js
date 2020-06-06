@@ -37,7 +37,10 @@ const extractAttr = function(req, modelAttr) {
         }
       } else {
         if (modelAttr[key]['type'] === 'Boolean') {
-          extractedAttr[model][key] = [JSON.parse(query[key])];
+          if (JSON.parse(query[key]))
+            extractedAttr[model][key] = [true];
+          else
+            extractedAttr[model][key] = { [Op.not]: true };
         } else {
           extractedAttr[model][key] = (Array.isArray(query[key])) ? query[key] : [query[key]];
         }
@@ -55,16 +58,19 @@ const matchAttr = function(extractedAttr) {
 
     let where = {};
     for (let propertyName in model) {
-      if (typeof model[propertyName][0] !== 'object') {
-        where[propertyName] = model[propertyName];
-      } else {
-        if (model[propertyName].length === 1){
-          where[propertyName] = getOPerator(model[propertyName][0]);
+      if (Array.isArray(model[propertyName])) {
+        if (typeof model[propertyName][0] !== 'object') {
+          where[propertyName] = model[propertyName];
         } else {
-          where[propertyName] = getAndOperator(model[propertyName]);
+          if (model[propertyName].length === 1){
+            where[propertyName] = getOPerator(model[propertyName][0]);
+          } else {
+            where[propertyName] = getAndOperator(model[propertyName]);
+          }
         }
+      } else {
+        where[propertyName] = model[propertyName];
       }
-
       matchedObj[modelName] = { where };
     }
   }
