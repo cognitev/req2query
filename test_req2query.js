@@ -82,7 +82,7 @@ try {
     {
       query: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
-        amount: "10",
+        amount: 10,
       },
     },
     modelAttr
@@ -90,7 +90,7 @@ try {
   assert.deepEqual(extractedAttr, {
     package: {
       state: ["RUNNING", "PENDING", "PENDING_PAID"],
-      amount: ["10"],
+      amount: [10],
     },
   });
   
@@ -102,7 +102,7 @@ try {
     {
       query: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
-        amount: "10",
+        amount: 10,
         started_at: "2020-01-01",
         is_deleted: false,
       },
@@ -112,7 +112,7 @@ try {
   assert.deepEqual(extractedAttr, {
     package: {
       state: ["RUNNING", "PENDING", "PENDING_PAID"],
-      amount: ["10"],
+      amount: [10],
     },
     campaign: {
       started_at: ["2020-01-01"],
@@ -128,7 +128,7 @@ try {
     {
       query: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
-        amount__gte: "10",
+        amount__gte: 10,
         started_at: "2020-01-01",
         is_deleted: true,
       },
@@ -249,7 +249,7 @@ try {
   extractedAttr = {
     package: {
       state: ["RUNNING", "PENDING", "PENDING_PAID"],
-      amount: ["10"],
+      amount: [10],
     },
   };
   matchedObj = matchedObject(extractedAttr);
@@ -257,7 +257,7 @@ try {
     package: {
       where: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
-        amount: ["10"],
+        amount: [10],
       },
     },
   });
@@ -269,7 +269,7 @@ try {
   extractedAttr = {
     package: {
       state: ["RUNNING", "PENDING", "PENDING_PAID"],
-      amount: ["10"],
+      amount: [10],
     },
     campaign: {
       started_at: ["2020-01-01"],
@@ -281,7 +281,7 @@ try {
     package: {
       where: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
-        amount: ["10"],
+        amount: [10],
       },
     },
     campaign: {
@@ -379,7 +379,7 @@ try {
       where: {
         state: ["RUNNING", "PENDING", "PENDING_PAID"],
         amount: {
-          [Op.or]: {
+          [Op.and]: {
             [Op.gte]: 10,
             [Op.lte]: 20,
           },
