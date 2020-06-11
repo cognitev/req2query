@@ -1,7 +1,7 @@
 {
   "name": "req2query",
   "version": "1.0.0",
-  "description": "* * *",
+  "description": "Lightweight Express.js middleware that can convert query parameters into sequlize query",
   "main": "req2query.js",
   "scripts": {
     "test": "node ./test_req2query"
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/cognitev/req2query.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "mahmoudshaltoot",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cognitev/req2query/issues"
   },
