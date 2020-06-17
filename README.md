@@ -1,5 +1,4 @@
 # req2query Package
-* * *
 Lightweight Express.js middleware that can convert query parameters into sequlize query
 
 
@@ -13,7 +12,6 @@ $ npm install github:cognitev/req2query#production
 ```
 
 ## Usage
-* * *
 * define your models attributes, put all models attributes in one object like the object below. 
 ```javascript
 module.exports = {
