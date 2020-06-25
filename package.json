@@ -1,6 +1,6 @@
 {
   "name": "req2query",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Lightweight Express.js middleware that can convert query parameters into sequlize query",
   "main": "req2query.js",
   "scripts": {

@@ -1,16 +1,6 @@
 # req2query Package
 Lightweight Express.js middleware that can convert query parameters into sequlize query
 
-
-## Installation
-This is a Express.js middleware available through [**Cognitev**](https://github.com/cognitev) .
-
-Installation is done using the **npm install command :**
-
-```
-$ npm install github:cognitev/req2query#production
-```
-
 ## Usage
 * define your models attributes, put all models attributes in one object like the object below. 
 ```javascript
